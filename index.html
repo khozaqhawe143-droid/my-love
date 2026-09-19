@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body { background: #000; color: white; font-family: sans-serif; text-align: center; padding: 40px 20px; margin:0; overflow:hidden; }
+.card { background: #1a1a1a; border: 2px solid #ff0000; border-radius: 20px; padding: 30px; max-width: 400px; margin: auto; box-shadow: 0 0 30px rgba(255,0,0,0.3); position: relative; z-index: 10; }
+h1 { color: #ff0000; }
+button { background: #ff0000; color: white; border: none; padding: 15px 30px; border-radius: 30px; font-size: 18px; margin: 10px; cursor: pointer; }
+button.no { background: #333; border: 1px solid #555; }
+#msg { font-size: 20px; margin-top: 20px; color: #ff4d4d; }
+.heart { position: fixed; top: -30px; font-size: 24px; animation: fall linear infinite; z-index: 1; pointer-events: none; }
+@keyframes fall { to { transform: translateY(110vh) rotate(360deg); } }
+</style>
+</head>
+<body>
+<div class="card">
+<h1>💌 Date Night?</h1>
+<p>Hey mama<br>Will you spend the night with me?</p>
+<p>📅 Saturday Night<br>🍝Just Us<br>📍 It's a surprise</p>
+<button onclick="yes()">Yes! ❤️</button>
+<button class="no" onclick="no()">No</button>
+<p id="msg"></p>
+</div>
+<script>
+function yes() {
+  document.getElementById("msg").innerText = "Yay! It's a date! ❤️ See you at 9pm!";
+}
+function no() {
+  document.getElementById("msg").innerText = "Hmm, that button seems broken... try Yes 😉";
+}
+// falling hearts
+function createHeart() {
+  const h = document.createElement('div');
+  h.className = 'heart';
+  h.innerText = '❤️';
+  h.style.left = Math.random() * 100 + 'vw';
+  h.style.animationDuration = (Math.random() * 3 + 2) + 's';
+  h.style.opacity = Math.random() * 0.7 + 0.3;
+  h.style.fontSize = (Math.random() * 20 + 15) + 'px';
+  document.body.appendChild(h);
+  setTimeout(() => h.remove(), 5000);
+}
+setInterval(createHeart, 300);
+</script>
+</body>
+</html>
